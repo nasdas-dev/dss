@@ -58,8 +58,8 @@ function App() {
     >
       <Nav />
 
-      <div className="hero min-h-screen">
-        <div className="hero-content rounded-lg"></div>
+      <div className="hero min-h-screen flex flex-wrap">
+        <div className="hero-content rounded-lg ml-24"></div>
         <div className="text-left hero-content rounded-3xl text-content card card-title shadow-xl backdrop-blur-sm  bg-slate-500 m-5 bg-opacity-10 ">
           <div className="rounded-3xl" id="bg">
             <div className="max-w-xl m-2 bg-base-200 rounded-3xl menu-title">
@@ -75,6 +75,41 @@ function App() {
                   Get Started
                 </button>
               </Link>
+            </div>
+          </div>
+        </div>
+        <div className="flex-container">
+          <div className="hero-content rounded-lg flex-1  flex-wrap w-5/6">
+            <div className="card card-body bg-slate-50 backdrop-blur-sm">
+              <h1 className="card-title text-3xl inset-1 font-bold ml-10 mr-10 p-4">
+                <span className="text-5xl font-serif font-black text-primary">
+                  2311
+                </span>{" "}
+                attacks are currently being executed.
+              </h1>
+              <p className="ml-10 mr-10 p-4">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+                at lorem arcu. Duis varius arcu nec bibendum iaculis. Mauris
+                vitae convallis.
+              </p>
+            </div>
+          </div>
+          <div className="hero-content rounded-lg flex-1  flex-wrap w-5/6">
+            <div className="card card-body bg-slate-50 backdrop-blur-sm">
+              <h1 className="card-title text-3xl inset-1 font-bold ml-10 mr-10 p-4">
+                <span className="text-5xl font-serif font-black text-secondary">
+                  529388
+                </span>{" "}
+                network nodes are unprotected.
+              </h1>
+              <p className="ml-10 mr-10 p-4">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+                at lorem arcu. Duis varius arcu nec bibendum iaculis. Mauris
+                vitae convallis nibh. Nam consequat ornare sapien sit amet
+                sollicitudin. Nullam viverra sapien id mauris facilisis, at
+                porta ligula varius. Etiam venenatis euismod nisl sed porttitor.
+                Maecenas maximus
+              </p>
             </div>
           </div>
         </div>
