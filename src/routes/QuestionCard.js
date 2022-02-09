@@ -13,11 +13,49 @@ function QuestionCard({ key, data }) {
           </p>
           <div class="card-actions">
             <div class="p-10 card bg-base-200">
-              <div class="form-control">
-                <label class="label">
-                  <span class="label-text">Answer</span>
-                </label>
-                <input type="text" placeholder="Answer" class="input" />
+              <div class="p-6 card bordered">
+                <div class="form-control">
+                  <label class="cursor-pointer label">
+                    <span class="label-text">1 - Primary </span>
+                    <input
+                      type="radio"
+                      name={`${key}`}
+                      checked="checked"
+                      class="radio radio-primary"
+                      value=""
+                    />
+                  </label>
+                  <label class="cursor-pointer label">
+                    <span class="label-text">2 - Primary </span>
+                    <input
+                      type="radio"
+                      name={`${key}`}
+                      checked="checked"
+                      class="radio radio-primary"
+                      value=""
+                    />
+                  </label>
+                  <label class="cursor-pointer label">
+                    <span class="label-text">3 - Primary </span>
+                    <input
+                      type="radio"
+                      name={`${key}`}
+                      checked="checked"
+                      class="radio radio-primary"
+                      value=""
+                    />
+                  </label>
+                  <label class="cursor-pointer label">
+                    <span class="label-text">4 - Primary </span>
+                    <input
+                      type="radio"
+                      name={`${key}`}
+                      checked="checked"
+                      class="radio radio-primary"
+                      value=""
+                    />
+                  </label>
+                </div>
               </div>
             </div>
           </div>

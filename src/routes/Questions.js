@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function Questions(props) {
   return (
     <div>
-      <ul class="menu m-10 border bg-base-300 rounded-box absolute top-0 right-0 h-16 w-16 items-center z-50">
+      <ul class="fixed menu m-10 border bg-base-300 rounded-box top-0 right-0 h-16 w-16 items-center z-50">
         <li class="">
           <Link to="/">
             <a>
@@ -25,16 +25,16 @@ function Questions(props) {
           </Link>
         </li>
       </ul>
-      <div className="columns-2 flex flex-1">
-        <ul class="w-full steps steps-vertical h-screen basis-1/6 p-20 m-20">
+      <div className="flex-container flex-col">
+        <ul class="flex-auto fixed steps steps-vertical h-screen w-1/6 p-20 m-20">
           <li class="step step-info">Fly to moon</li>
           <li class="step step-info">Shrink the moon</li>
           <li class="step step-info">Grab the moon</li>
           <li data-content="?" class="step step-error">
-            Sit on toilet
+            Lorem Ipsum
           </li>
         </ul>
-        <div className="basis-5/6 h-1/4">
+        <div className="ml-96 flex-auto w-5/6 h-1/4">
           {data.map((element, i) => (
             <QuestionCard key={i} data={element} />
           ))}

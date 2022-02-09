@@ -55,6 +55,7 @@ export const Nav = () => {
               </li>
             </ul>
           </div>
+          <div className="flex pl-20 space-x-8"></div>
           <ul class="flex items-center hidden space-x-8 lg:flex">
             <li>
               <a

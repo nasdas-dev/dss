@@ -5,7 +5,7 @@ function Assessment(props) {
   return (
     <>
       <div class="hero min-h-screen bg-base-100">
-        <ul class="menu m-10 border bg-base-300 rounded-box absolute top-0 right-0 h-16 w-16 items-center">
+        <ul class="fixed menu m-10 border bg-base-300 rounded-box top-0 right-0 h-16 w-16 items-center z-50">
           <li class="">
             <Link to="/">
               <a>
