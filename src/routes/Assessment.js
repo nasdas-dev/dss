@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 function Assessment(props) {
   return (
     <>
-      <div class="hero min-h-screen bg-base-100">
-        <ul class="fixed menu m-10 border bg-base-300 rounded-box top-0 right-0 h-16 w-16 items-center z-50">
-          <li class="">
+      <div className="hero min-h-screen bg-base-100">
+        <ul className="fixed menu m-10 border bg-base-300 rounded-box top-0 right-0 h-16 w-16 items-center z-50">
+          <li className="">
             <Link to="/">
               <a>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="h-10 w-10"
+                  className="h-10 w-10"
                   viewBox="0 0 20 20"
                   fill="currentColor"
                 >
@@ -26,16 +26,16 @@ function Assessment(props) {
           </li>
         </ul>
 
-        <div class="text-center hero-content">
-          <div class="max-w-md">
-            <h1 class="mb-5 text-5xl font-bold">Ransomware Assessment</h1>
-            <p class="mb-5">
+        <div className="text-center hero-content">
+          <div className="max-w-md">
+            <h1 className="mb-5 text-5xl font-bold">Ransomware Assessment</h1>
+            <p className="mb-5">
               Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
               excepturi exercitationem quasi. In deleniti eaque aut repudiandae
               et a id nisi.
             </p>
             <Link to={"/assessment/questions"}>
-              <button class="btn btn-primary text-white">
+              <button className="btn btn-primary text-white">
                 Start the assessment
               </button>
             </Link>

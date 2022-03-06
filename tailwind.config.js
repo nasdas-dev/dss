@@ -326,7 +326,14 @@ module.exports = {
     backgroundColor: ["responsive", "hover", "focus", "group-hover"],
   },
   daisyui: {
-    themes: ["corporate"],
+    styled: true,
+    themes: ["dark"],
+    base: true,
+    utils: true,
+    logs: true,
+    rtl: false,
+    prefix: "",
+    darkTheme: "dark",
   },
   plugins: [require("daisyui")],
 };

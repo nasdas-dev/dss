@@ -1,202 +1,97 @@
 import { useState } from "react";
 
-export const Nav = () => {
+export const Nav = ({ isLoggedIn }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <div class="bg-base-100 backdrop-blur-sm shadow-lg">
-      <div class="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
-        <div class="relative flex items-center justify-between">
-          <div class="flex items-center">
-            <a
-              href="/"
-              aria-label="Company"
-              title="Company"
-              class="inline-flex items-center mr-8"
+    <div className="navbar bg-neutral drop-shadow-xl min-h-16 w-full">
+      <div className="flex-1 m-2">
+        <a href="/" className="btn btn-ghost normal-case text-xl">
+          <svg
+            version="1.0"
+            xmlns="http://www.w3.org/2000/svg"
+            width="30"
+            height="30"
+            viewBox="0 0 300.000000 300.000000"
+            preserveAspectRatio="xMidYMid meet"
+          >
+            {" "}
+            <g
+              transform="translate(0.000000,300.000000) scale(0.100000,-0.100000)"
+              fill="#eeeeee"
+              stroke="none"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="black"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-                />
-              </svg>
-              <span class="ml-2 text-xl font-bold tracking-wide  uppercase">
-                Ransomware DSS
-              </span>
-            </a>
-            <ul class="flex items-center space-x-8 lg:flex">
-              <li>
-                <a
-                  href="/"
-                  aria-label="Our product"
-                  title="Our product"
-                  class="font-medium tracking-wide  transition-colors duration-1000 hover:text-secondary"
-                >
-                  About
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/"
-                  aria-label="Our product"
-                  title="Our product"
-                  class="font-medium tracking-wide  transition-colors duration-1000 hover:text-secondary"
-                >
-                  Contact
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div className="flex pl-20 space-x-8"></div>
-          <ul class="flex items-center hidden space-x-8 lg:flex">
+              {" "}
+              <path d="M1416 2943 c-87 -97 -148 -152 -238 -213 -220 -148 -495 -232 -808 -247 -150 -7 -175 -17 -191 -76 -13 -49 -6 -415 11 -567 37 -321 112 -619 217 -859 101 -234 214 -402 383 -572 134 -134 246 -216 400 -294 90 -45 278 -115 310 -115 32 0 173 51 280 101 169 80 289 166 430 308 254 256 417 564 521 986 62 252 87 455 96 755 8 312 0 330 -151 330 -176 0 -434 50 -600 116 -205 83 -343 180 -492 347 -42 48 -56 57 -84 57 -28 0 -42 -9 -84 -57z m161 -243 c224 -209 595 -361 943 -385 144 -10 130 7 130 -158 0 -230 -32 -484 -91 -726 -87 -357 -242 -659 -447 -873 -159 -165 -318 -271 -525 -349 l-87 -32 -97 36 c-456 174 -774 556 -938 1126 -70 244 -115 565 -115 821 0 161 -14 145 130 155 348 24 723 177 941 384 41 39 76 70 78 71 2 0 37 -32 78 -70z" />{" "}
+              <path d="M1161 2234 c-39 -32 -40 -70 -6 -148 14 -31 25 -62 25 -69 -1 -7 -25 -29 -56 -50 -48 -34 -117 -108 -143 -154 -8 -14 -16 -13 -75 10 -83 34 -125 35 -154 4 -26 -27 -29 -82 -8 -113 8 -11 47 -33 86 -49 l71 -29 -7 -50 c-6 -44 -6 -128 -1 -230 2 -27 -3 -31 -58 -54 -81 -32 -105 -56 -105 -104 0 -48 35 -88 77 -88 15 0 58 14 96 29 l67 29 29 -41 c30 -44 119 -131 161 -158 l24 -16 -27 -69 c-15 -38 -27 -82 -27 -97 0 -39 41 -77 82 -77 49 0 72 21 103 97 l28 68 157 0 157 0 28 -68 c31 -76 54 -97 103 -97 41 0 82 38 82 77 0 15 -12 59 -27 97 l-27 69 24 16 c42 27 131 114 161 158 l29 41 67 -29 c38 -15 81 -29 96 -29 42 0 77 40 77 88 0 48 -24 72 -105 104 -55 23 -60 27 -58 54 5 102 5 186 -1 230 l-7 50 70 28 c39 15 78 37 86 49 23 33 19 90 -8 115 -31 29 -72 28 -153 -5 -58 -23 -68 -24 -75 -11 -25 45 -103 128 -148 159 -28 18 -51 39 -51 46 0 7 11 38 25 69 34 78 33 116 -6 148 -60 51 -113 23 -158 -84 -24 -57 -30 -65 -52 -62 -13 1 -71 3 -129 3 -58 0 -116 -2 -129 -3 -22 -3 -28 5 -52 62 -45 107 -98 135 -158 84z m438 -325 c234 -54 386 -299 327 -528 -57 -224 -274 -369 -493 -331 -238 41 -405 267 -366 494 29 172 142 306 300 356 64 21 165 25 232 9z" />{" "}
+            </g>{" "}
+          </svg>
+          <span className="m-2" />
+          Ransomware DSS
+        </a>
+        {isLoggedIn ? (
+          <ul className="menu-horizontal p-0">
             <li>
-              <a
-                href="/"
-                aria-label="Sign in"
-                title="Sign in"
-                class="font-medium tracking-wide  transition-colors duration-1000 hover:text-secondary"
-              >
-                Sign in
+              <a href="/signup" className="btn btn-ghost rounded-full m-2">
+                Dashboard
+              </a>
+            </li>
+
+            <li>
+              <a href="/signup" className="btn btn-ghost rounded-full m-2">
+                Assessment
+              </a>
+            </li>
+
+            <li>
+              <a href="/" className="btn btn-ghost rounded-full m-2">
+                User Statistics
               </a>
             </li>
             <li>
-              <a
-                href="/"
-                class="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-1000 rounded shadow-md bg-neutral hover:btn-secondary hover:text-white focus:shadow-outline focus:outline-none"
-                aria-label="Sign up"
-                title="Sign up"
-              >
-                Sign up
+              <a href="/" className="btn btn-ghost rounded-full m-2">
+                Current CVEs
               </a>
             </li>
           </ul>
-          <div class="lg:hidden">
-            <button
-              aria-label="Open Menu"
-              title="Open Menu"
-              class="p-2 -mr-1 transition duration-200 rounded focus:outline-none focus:shadow-outline"
-              onClick={() => setIsMenuOpen(true)}
-            >
-              <svg class="w-5 text-gray-600" viewBox="0 0 24 24">
-                <path
-                  fill="currentColor"
-                  d="M23,13H1c-0.6,0-1-0.4-1-1s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,13,23,13z"
-                />
-                <path
-                  fill="currentColor"
-                  d="M23,6H1C0.4,6,0,5.6,0,5s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,6,23,6z"
-                />
-                <path
-                  fill="currentColor"
-                  d="M23,20H1c-0.6,0-1-0.4-1-1s0.4-1,1-1h22c0.6,0,1,0.4,1,1S23.6,20,23,20z"
-                />
-              </svg>
-            </button>
-            {isMenuOpen && (
-              <div class="absolute top-0 left-0 w-full">
-                <div class="p-5 bg-white border rounded shadow-sm">
-                  <div class="flex items-center justify-between mb-4">
-                    <div>
-                      <a
-                        href="/"
-                        aria-label="Company"
-                        title="Company"
-                        class="inline-flex items-center"
-                      >
-                        <svg
-                          class="w-8 text-deep-purple-accent-400"
-                          viewBox="0 0 24 24"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeMiterlimit="10"
-                          stroke="currentColor"
-                          fill="none"
-                        >
-                          <rect x="3" y="1" width="7" height="12" />
-                          <rect x="3" y="17" width="7" height="6" />
-                          <rect x="14" y="1" width="7" height="6" />
-                          <rect x="14" y="11" width="7" height="12" />
-                        </svg>
-                        <span class="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
-                          Company
-                        </span>
-                      </a>
-                    </div>
-                    <div>
-                      <button
-                        aria-label="Close Menu"
-                        title="Close Menu"
-                        class="p-2 -mt-2 -mr-2 transition duration-200 rounded hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                        onClick={() => setIsMenuOpen(false)}
-                      >
-                        <svg class="w-5 text-gray-600" viewBox="0 0 24 24">
-                          <path
-                            fill="currentColor"
-                            d="M19.7,4.3c-0.4-0.4-1-0.4-1.4,0L12,10.6L5.7,4.3c-0.4-0.4-1-0.4-1.4,0s-0.4,1,0,1.4l6.3,6.3l-6.3,6.3 c-0.4,0.4-0.4,1,0,1.4C4.5,19.9,4.7,20,5,20s0.5-0.1,0.7-0.3l6.3-6.3l6.3,6.3c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3 c0.4-0.4,0.4-1,0-1.4L13.4,12l6.3-6.3C20.1,5.3,20.1,4.7,19.7,4.3z"
-                          />
-                        </svg>
-                      </button>
-                    </div>
-                  </div>
-                  <nav>
-                    <ul class="space-y-4">
-                      <li>
-                        <a
-                          href="/"
-                          aria-label="Our product"
-                          title="Our product"
-                          class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                        >
-                          About
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="/"
-                          aria-label="Our product"
-                          title="Our product"
-                          class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                        >
-                          Contact
-                        </a>
-                      </li>
+        ) : (
+          false
+        )}
+      </div>
+      <div className="ml-20" />
+      <div className="flex-none">
+        {!isLoggedIn ? (
+          <ul className="menu-horizontal p-0">
+            <li>
+              <a href="/signup" className="btn btn-ghost rounded-full mr-2">
+                Log In
+              </a>
+            </li>
+            <li>
+              <a href="/signup" className="btn text-white rounded-full">
+                Sign Up
+              </a>
+            </li>{" "}
+          </ul>
+        ) : (
+          false
+        )}
 
-                      <li>
-                        <a
-                          href="/"
-                          aria-label="Sign in"
-                          title="Sign in"
-                          class="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                        >
-                          Sign in
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="/"
-                          class="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-                          aria-label="Sign up"
-                          title="Sign up"
-                        >
-                          Sign up
-                        </a>
-                      </li>
-                    </ul>
-                  </nav>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
+        {
+          // ------------------------------- //}
+        }
+
+        {isLoggedIn ? (
+          <ul className="menu-horizontal p-0">
+            <li>
+              <a href="/" className="btn text-white rounded-full">
+                Log Out
+              </a>
+            </li>
+          </ul>
+        ) : (
+          false
+        )}
       </div>
     </div>
   );

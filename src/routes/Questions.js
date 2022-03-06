@@ -2,16 +2,29 @@ import React from "react";
 import data from "../data/data.json";
 import QuestionCard from "./QuestionCard";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { useState, useEffect } from "react";
+
 function Questions(props) {
+  const [questions, setQuestions] = useState([]);
+
+  useEffect(() => {
+    const promise = axios
+      .get("http://localhost:3001/api/questions/")
+      .then((res) => {
+        setQuestions(res.data);
+      });
+  }, []);
+
   return (
     <div>
-      <ul class="fixed menu m-10 border bg-base-300 rounded-box top-0 right-0 h-16 w-16 items-center z-50">
-        <li class="">
+      <ul className="fixed menu m-10 border bg-base-300 rounded-box top-0 right-0 h-16 w-16 items-center z-50">
+        <li className="">
           <Link to="/">
             <a>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-10 w-10"
+                className="h-10 w-10"
                 viewBox="0 0 20 20"
                 fill="currentColor"
               >
@@ -26,16 +39,17 @@ function Questions(props) {
         </li>
       </ul>
       <div className="flex-container flex-col">
-        <ul class="flex-auto fixed steps steps-vertical h-screen w-1/6 p-20 m-20">
-          <li class="step step-info">Fly to moon</li>
-          <li class="step step-info">Shrink the moon</li>
-          <li class="step step-info">Grab the moon</li>
-          <li data-content="?" class="step step-error">
+        <ul className="flex-auto fixed steps steps-vertical h-screen w-1/6 p-20 m-20">
+          <li className="step step-info">Fly to moon</li>
+          <li className="step step-info">Shrink the moon</li>
+          <li className="step step-info">Grab the moon</li>
+          <li data-content="?" className="step step-error">
             Lorem Ipsum
           </li>
         </ul>
         <div className="ml-96 flex-auto w-5/6 h-1/4">
-          {data.map((element, i) => (
+          {}
+          {questions.map((element, i) => (
             <QuestionCard key={i} data={element} />
           ))}
         </div>
