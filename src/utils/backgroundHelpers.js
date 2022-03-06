@@ -5,16 +5,17 @@ export const changePattern = (e) => {
   page_bg.style.setProperty(
     "background-size",
     `
-      ${100 - 2 * e.pageX * 0.000001}px ${100 - 2 * e.pageY * 0.000001}px
+      ${5 - e.pageX * 0.000001}px ${5 - e.pageY * 0.000001}px
       `
   );
   page_bg.style.setProperty(
     "background-position",
     `
-      ${200 - 50 * e.pageX * 0.00001}% ${100 - 50 * e.pageY * 0.00001}%
+      ${200 - 50 * e.pageX * 0.000005}% ${100 - 50 * e.pageY * 0.000005}%
       `
   );
 };
+
 export const changeColor = (e) => {
   let bg = document.getElementById("bg");
   bg.style.setProperty(
