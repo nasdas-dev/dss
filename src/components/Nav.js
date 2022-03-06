@@ -8,7 +8,7 @@ export const Nav = ({ isLoggedIn }) => {
     <div className="navbar bg-neutral drop-shadow-xl min-h-16 w-full">
       <div className="flex-1 m-2">
         <Link to="/" className="">
-          <a href="/" className="btn btn-ghost normal-case text-xl">
+          <button className="btn btn-ghost normal-case text-xl">
             <svg
               version="1.0"
               xmlns="http://www.w3.org/2000/svg"
@@ -30,15 +30,15 @@ export const Nav = ({ isLoggedIn }) => {
             </svg>
             <span className="m-2" />
             Ransomware DSS
-          </a>
+          </button>
         </Link>
         {isLoggedIn ? (
           <ul className="menu-horizontal p-0">
             <li>
               <Link to="/signup" className="">
-                <a href="/signup" className="btn btn-ghost rounded-full m-2">
+                <button className="btn btn-ghost rounded-full m-2">
                   Dashboard
-                </a>
+                </button>
               </Link>
             </li>
 
@@ -55,9 +55,9 @@ export const Nav = ({ isLoggedIn }) => {
 
             <li>
               <Link to="/stats" className="">
-                <a href="/stats" className="btn btn-ghost rounded-full m-2">
+                <button className="btn btn-ghost rounded-full m-2">
                   User Statistics
-                </a>
+                </button>
               </Link>
             </li>
             <li>
@@ -81,16 +81,16 @@ export const Nav = ({ isLoggedIn }) => {
           <ul className="menu-horizontal p-0">
             <li>
               <Link to="/dashboard" className="">
-                <a href="/dashboard" className="btn btn-ghost rounded-full m-2">
+                <button className="btn btn-ghost rounded-full m-2">
                   Log In
-                </a>
+                </button>
               </Link>
             </li>
             <li>
               <Link to="/signup" className="">
-                <a href="/signup" className="btn btn-ghost rounded-full m-2">
+                <button className="btn btn-ghost rounded-full m-2">
                   Sign Up
-                </a>
+                </button>
               </Link>
             </li>{" "}
           </ul>
@@ -106,9 +106,7 @@ export const Nav = ({ isLoggedIn }) => {
           <ul className="menu-horizontal p-0">
             <li>
               <Link to="/">
-                <a href="/" className="btn text-white rounded-full">
-                  Log Out
-                </a>
+                <button className="btn text-white rounded-full">Log Out</button>
               </Link>
             </li>
           </ul>
