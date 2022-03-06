@@ -9,9 +9,9 @@ function CardSecondary({
   buttonText,
 }) {
   return (
-    <div className="mb-16 hero-content rounded-3xl w-5/6 shadow-lg bg-base-100">
+    <div className="mb-16 hero-content rounded-3xl w-5/6 shadow-lg bg-base-100 max-w-4xl">
       <div className="bg-opacity-50 rounded-3xl">
-        <h1 className="card-title text-3xl inset-1 font-bold ml-10 mr-10 p-4">
+        <h1 className="card-title text-3xl inset-1 font-bold ml-10 mr-10">
           <span className={`text-5xl font-serif font-black ${spancolor}`}>
             {span}
           </span>{" "}

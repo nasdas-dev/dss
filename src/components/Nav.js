@@ -63,7 +63,7 @@ export const Nav = ({ isLoggedIn }) => {
         {!isLoggedIn ? (
           <ul className="menu-horizontal p-0">
             <li>
-              <a href="/signup" className="btn btn-ghost rounded-full mr-2">
+              <a href="/dashboard" className="btn btn-ghost rounded-full mr-2">
                 Log In
               </a>
             </li>
