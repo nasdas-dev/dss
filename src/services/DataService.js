@@ -38,7 +38,8 @@ export default class DataService {
     const headers = new Headers();
     headers.set("Content-Type", "application/json");
     headers.set("Authorization", token);
-
+    headers.set("Connection", "keep-alive");
+    headers.set("Accept", "*");
     return headers;
   }
 }

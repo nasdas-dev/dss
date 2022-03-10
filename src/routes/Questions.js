@@ -1,6 +1,6 @@
 import React from "react";
 import data from "../data/data.json";
-import QuestionCard from "./QuestionCard";
+import QuestionCard from "../components/QuestionCard";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";

@@ -24,5 +24,8 @@
   },
   "editor.quickSuggestions": {
     "strings": true
-  }
+  },
+  "files.autoSave": "afterDelay",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "javascript.updateImportsOnFileMove.enabled": "always"
 }

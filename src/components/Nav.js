@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 
 export const Nav = ({ isLoggedIn }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const id = localStorage.getItem("uid");
 
   return (
-    <div className="navbar bg-neutral drop-shadow-xl min-h-16 w-full">
+    <div className="navbar navbar-start	z-50 bg-neutral drop-shadow-xl min-h-16 w-full">
       <div className="flex-1 m-2">
         <Link to="/" className="">
-          <button className="btn btn-ghost normal-case text-xl">
+          <button className="btn btn-ghost normal-case text-lg whitespace-nowrap flex-none">
             <svg
               version="1.0"
               xmlns="http://www.w3.org/2000/svg"
@@ -35,7 +36,7 @@ export const Nav = ({ isLoggedIn }) => {
         {isLoggedIn ? (
           <ul className="menu-horizontal p-0">
             <li>
-              <Link to="/signup" className="">
+              <Link to="/dashboard" className="">
                 <button className="btn btn-ghost rounded-full m-2">
                   Dashboard
                 </button>
@@ -61,12 +62,19 @@ export const Nav = ({ isLoggedIn }) => {
               </Link>
             </li>
             <li>
-              <Link to="/vulnerabilities" className="">
+              <Link to="/cves" className="">
+                <a href="/cves" className="btn btn-ghost rounded-full m-2">
+                  Current CVEs
+                </a>
+              </Link>
+            </li>
+            <li>
+              <Link to="/learnings" className="">
                 <a
                   href="/vulnerabilities"
                   className="btn btn-ghost rounded-full m-2"
                 >
-                  Current CVEs
+                  eLearnings
                 </a>
               </Link>
             </li>
@@ -76,11 +84,11 @@ export const Nav = ({ isLoggedIn }) => {
         )}
       </div>
       <div className="ml-20" />
-      <div className="flex-none">
+      <div className="">
         {!isLoggedIn ? (
-          <ul className="menu-horizontal p-0">
+          <ul className="menu-horizontal">
             <li>
-              <Link to="/dashboard" className="">
+              <Link to="/login" className="">
                 <button className="btn btn-ghost rounded-full m-2">
                   Log In
                 </button>
@@ -88,7 +96,7 @@ export const Nav = ({ isLoggedIn }) => {
             </li>
             <li>
               <Link to="/signup" className="">
-                <button className="btn btn-ghost rounded-full m-2">
+                <button className="btn btn-outline rounded-full m-2">
                   Sign Up
                 </button>
               </Link>
@@ -97,19 +105,33 @@ export const Nav = ({ isLoggedIn }) => {
         ) : (
           false
         )}
-
         {
           // ------------------------------- //}
-        }
-
+        }{" "}
         {isLoggedIn ? (
-          <ul className="menu-horizontal p-0">
-            <li>
-              <Link to="/">
-                <button className="btn text-white rounded-full">Log Out</button>
-              </Link>
-            </li>
-          </ul>
+          <div className="dropdown dropdown-end z-50">
+            <label tabindex="0" className="btn btn-ghost btn-circle avatar">
+              <div className="w-10 rounded-full">
+                <img src="https://api.lorem.space/image/face?hash=33791" />
+              </div>
+            </label>
+            <ul
+              tabIndex="0"
+              className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
+            >
+              <li>
+                <Link to={`/users/${id}`}>
+                  <a className="justify-between">Profile</a>
+                </Link>
+              </li>
+              <li>
+                <a>Settings</a>
+              </li>
+              <li>
+                <a href={"/"}>Logout</a>
+              </li>
+            </ul>
+          </div>
         ) : (
           false
         )}

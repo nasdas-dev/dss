@@ -1,9 +1,9 @@
-import "./Home.css";
-import Nav from "./components/Nav.js";
-import { changeColor, changePattern } from "./utils/backgroundHelpers";
-import CardPrimary from "./components/CardPrimary";
-import CardSecondary from "./components/CardSecondary";
-import Footer from "./components/Footer";
+import "./styles/Home.css";
+import Nav from "../components/Nav.js";
+import { changeColor, changePattern } from "../utils/backgroundHelpers";
+import CardPrimary from "../components/CardPrimary";
+import CardSecondary from "../components/CardSecondary";
+import Footer from "../components/Footer";
 
 function Home() {
   return (

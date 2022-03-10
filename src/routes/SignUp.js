@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import DataService from "../services/DataService";
 import KeyPressHelper from "../helpers/KeyPressHelpers";
+import { useNavigate } from "react-router-dom";
 
 function SignUp(props) {
+  let navigate = useNavigate();
+
   const [state, setState] = useState({
     email: "",
     password: "",
@@ -21,6 +24,7 @@ function SignUp(props) {
   function resetForm() {
     setState({
       email: "",
+      name: "",
       password: "",
       passwordRepeat: "",
       passwordNotIdentical: false,
@@ -32,7 +36,8 @@ function SignUp(props) {
     state.usernameInput.focus();
   }, []);
 
-  function signUp() {
+  function signUp(e) {
+    e.preventDefault();
     if (state["password"] !== state["passwordRepeat"]) {
       // Reset form if passwords not identically
       setState((prevState) => ({
@@ -43,7 +48,8 @@ function SignUp(props) {
       }));
     } else {
       // Register new user on server
-      DataService.postRequest("/users", {
+      DataService.postRequest("/api/users", {
+        name: state.name,
         email: state.email,
         password: state.password,
       })
@@ -54,7 +60,7 @@ function SignUp(props) {
             resetForm();
           } else {
             // Browse to login views
-            props.history.push("/login");
+            navigate("/login");
           }
         })
         .catch((err) => {
@@ -95,7 +101,12 @@ function SignUp(props) {
             Create your account
           </h2>
         </div>
-        <form className="mt-8 space-y-6" action="#" method="POST">
+        <form
+          className="mt-8 space-y-6"
+          action="#"
+          method="POST"
+          onSubmit={signUp}
+        >
           <input type="hidden" name="remember" value="true" />
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
@@ -123,6 +134,29 @@ function SignUp(props) {
               />
             </div>
             <div>
+              <label for="name" className="sr-only">
+                Name
+              </label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                required
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder="Name"
+                ref={(input) => {
+                  state.usernameInput = input;
+                }}
+                value={state.name}
+                onKeyPress={(e) =>
+                  KeyPressHelper.executeWhenEnter(e, signUp.bind(this))
+                }
+                onChange={(e) => {
+                  handleInputChange("name", e.target.value);
+                }}
+              />
+            </div>
+            <div>
               <label for="password" className="sr-only">
                 Password
               </label>
@@ -132,7 +166,7 @@ function SignUp(props) {
                 type="password"
                 autocomplete="current-password"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Password"
                 value={state.password}
                 onKeyPress={(e) =>
@@ -170,9 +204,6 @@ function SignUp(props) {
             <button
               type="submit"
               className="group btn relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 "
-              onClick={() => {
-                signUp();
-              }}
             >
               <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                 <svg
