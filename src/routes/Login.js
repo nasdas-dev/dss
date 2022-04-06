@@ -21,7 +21,7 @@ function Login(props) {
   function login(e) {
     e.preventDefault();
 
-    DataService.postRequest("/api/login", {
+    DataService.postRequest("/api/v1/login", {
       email: state.email.toLowerCase(),
       password: state.password,
     })
@@ -36,8 +36,6 @@ function Login(props) {
           const user = await res.json();
           // Save passed token in local storage and browse to game view
           localStorage.setItem("token", user.token);
-          localStorage.setItem("uid", user.uid);
-          localStorage.setItem("email", user.email);
 
           navigate("/dashboard");
         }
@@ -119,7 +117,7 @@ function Login(props) {
                 id="password"
                 name="password"
                 type="password"
-                autocomplete="current-password"
+                autoComplete="current-password"
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Password"
@@ -149,9 +147,9 @@ function Login(props) {
                   aria-hidden="true"
                 >
                   <path
-                    fill-rule="evenodd"
+                    fillRule="evenodd"
                     d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                    clip-rule="evenodd"
+                    clipRule="evenodd"
                   />
                 </svg>
               </span>

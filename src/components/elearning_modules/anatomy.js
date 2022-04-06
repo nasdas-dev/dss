@@ -75,7 +75,9 @@ function TableView(props) {
                 <td>
                   Carroll Group
                   <br />
-                  <span className="badge badge-ghost badge-sm">Tax Accountant</span>
+                  <span className="badge badge-ghost badge-sm">
+                    Tax Accountant
+                  </span>
                 </td>
                 <td>Red</td>
                 <th>

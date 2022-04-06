@@ -11,7 +11,9 @@ function SignUp(props) {
     password: "",
     passwordRepeat: "",
     passwordNotIdentical: false,
-    usernameInput: "",
+    name: "",
+    environment: "",
+    role: "",
   });
 
   function handleInputChange(key, value) {
@@ -28,12 +30,22 @@ function SignUp(props) {
       password: "",
       passwordRepeat: "",
       passwordNotIdentical: false,
+      environment: "",
+      role: "",
     });
+  }
+
+  function select(e, key, value) {
+    e.preventDefault();
+    setState((prevState) => ({
+      ...prevState,
+      [key]: value,
+    }));
   }
 
   useEffect(() => {
     // Update the document title using the browser API
-    state.usernameInput.focus();
+    // state.email.focus();
   }, []);
 
   function signUp(e) {
@@ -48,13 +60,13 @@ function SignUp(props) {
       }));
     } else {
       // Register new user on server
-      DataService.postRequest("/api/users", {
+      DataService.postRequest("/api/v1/users", {
         name: state.name,
         email: state.email,
         password: state.password,
       })
         .then(async (res) => {
-          if (!res.ok) {
+          if (!(res.status === 201)) {
             // Show error and reset form
             const error = await res.json();
             resetForm();
@@ -117,13 +129,10 @@ function SignUp(props) {
                 id="email-address"
                 name="email"
                 type="email"
-                autocomplete="email"
+                autoComplete="email"
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Email address"
-                ref={(input) => {
-                  state.usernameInput = input;
-                }}
                 value={state.email}
                 onKeyPress={(e) =>
                   KeyPressHelper.executeWhenEnter(e, signUp.bind(this))
@@ -185,7 +194,7 @@ function SignUp(props) {
                 id="confirm"
                 name="confirmpassword"
                 type="password"
-                autocomplete="current-password"
+                autoComplete="current-password"
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Confirm Password"
@@ -199,8 +208,37 @@ function SignUp(props) {
               />
             </div>
           </div>
-
-          <div>
+          <div className="pt-4 flex items-center justify-between">
+            For what environment do you want to conduct the self assessment?
+          </div>
+          <select
+            onChange={(e) => {
+              handleInputChange("environment", e.target.value);
+            }}
+            className="select select-primary w-full max-w-xs"
+          >
+            <option disabled selected>
+              Pick one...
+            </option>
+            <option>Organisation</option>
+            <option>Private Usage</option>
+          </select>
+          <div className="pt-4 flex items-center justify-between">
+            What is your level of user priviledge in the specified environment?
+          </div>
+          <select
+            onChange={(e) => {
+              handleInputChange("role", e.target.value);
+            }}
+            className="select select-primary w-full max-w-xs"
+          >
+            <option disabled selected>
+              Pick one...
+            </option>
+            <option>Administrator</option>
+            <option>Standard User</option>
+          </select>
+          <div className="pt-10">
             <button
               type="submit"
               className="group btn relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 "
@@ -214,9 +252,9 @@ function SignUp(props) {
                   aria-hidden="true"
                 >
                   <path
-                    fill-rule="evenodd"
+                    fillRule="evenodd"
                     d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                    clip-rule="evenodd"
+                    clipRule="evenodd"
                   />
                 </svg>
               </span>
