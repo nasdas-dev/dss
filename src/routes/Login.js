@@ -36,6 +36,7 @@ function Login(props) {
           const user = await res.json();
           // Save passed token in local storage and browse to game view
           localStorage.setItem("token", user.token);
+          localStorage.setItem("uid", user.uid);
 
           navigate("/dashboard");
         }

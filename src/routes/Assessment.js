@@ -7,7 +7,7 @@ function Assessment(props) {
       <div className="hero min-h-screen bg-base-100">
         <ul className="fixed menu m-10 border bg-base-300 rounded-box top-0 right-0 h-16 w-16 items-center z-50">
           <li className="">
-            <Link to="/">
+            <Link to="/dashboard">
               <a>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -30,9 +30,10 @@ function Assessment(props) {
           <div className="max-w-md">
             <h1 className="mb-5 text-5xl font-bold">Ransomware Assessment</h1>
             <p className="mb-5">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
+              You will be asked a total of 34 questions. Always make sure to
+              choose the answer option that corresponds to the most accurate
+              depiction of your thinking. After you have submitted your test,
+              you will be given feedback on your answers.
             </p>
             <Link to={"/assessment/questions"}>
               <button className="btn btn-primary text-white">

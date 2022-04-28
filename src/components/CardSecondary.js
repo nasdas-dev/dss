@@ -20,18 +20,18 @@ function CardSecondary({
             <div className="scale-125 ml-4 mr-6">
               <Odometer
                 value={span}
-                format="d"
-                className="basis-2/5"
-                duration="50000"
+                animation="count"
+                format="('ddd)"
+                duration={1000}
               />
             </div>
-            <h1 className="card-title text-3xl font-bold ml-2 mr-10 basis-3/5 inline-block">
+            <h1 className="card-title text-3xl font-bold ml-2 mr-10 basis-1/2 inline-block">
               {h1}
               {<span className={`${spancolor}`}>{h1_underline} </span>}
               {h1_2}
             </h1>
           </div>
-          <p className="ml-6 mr-10 p-4 font-medium">{p}</p>
+          <p className="ml-6 mr-10 p-4 mt-5 font-semibold text-lg">{p}</p>
           <button className="m-10 p-4 btn btn-square text-white border-0 shadow-2xl font-bold tracking-tight font-sans w-2/6">
             {buttonText}
           </button>{" "}
