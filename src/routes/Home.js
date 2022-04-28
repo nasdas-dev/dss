@@ -61,7 +61,7 @@ function Home() {
               recommendations to improve your IT security.
             </p>
             <div className="flex justify-center">
-              <Link to="/assessment" className="">
+              <Link to="/dashboard" className="">
                 <button className="m-10 btn btn-primary text-white border-0 font-bold tracking-tight font-sans">
                   Get Started
                 </button>
