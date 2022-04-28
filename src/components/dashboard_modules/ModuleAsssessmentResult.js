@@ -3,9 +3,7 @@ import DataService from "../../services/DataService";
 
 function ModuleAsssessmentResult() {
   const [score, setScore] = useState(-1);
-  const realScore = localStorage.getItem("ass")
-    ? parseInt(localStorage.getItem("ass"))
-    : 0;
+  const realScore = 100 - score;
 
   useEffect(() => {
     DataService.getRequest("/api/v1/whoami/")
@@ -44,7 +42,7 @@ function ModuleAsssessmentResult() {
       </div>{" "}
       <div className="card-body">
         <h2 className="card-title te">
-          {localStorage.getItem("ass")
+          {score !== -1
             ? `Your ransomware protection score has been determined. `
             : "You have not answered the test yet. "}
         </h2>
@@ -56,11 +54,11 @@ function ModuleAsssessmentResult() {
             : "You have not answered the test yet. Click the button below to answer the test."}
         </p>
         <div className="card-actions justify-end">
-          {localStorage.getItem("ass") ? (
+          {score !== -1 ? (
             <button
               className="btn btn-primary"
               onClick={() => {
-                window.location.href = "/assessment/results";
+                window.location.href = "/assessment/questions";
               }}
             >
               See results

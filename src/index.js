@@ -10,7 +10,7 @@ import Dashboard from "./routes/Dashboard";
 import TableView from "./routes/TableView";
 import Login from "./routes/Login";
 import User from "./routes/User";
-import Anatomy from "./components/elearning_modules/Anatomy";
+import Anatomy from "./components/elearning_modules/anatomy";
 
 ReactDOM.render(
   <React.StrictMode>
