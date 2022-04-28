@@ -42,16 +42,37 @@ function ModuleAsssessmentResult() {
       </div>{" "}
       <div className="card-body">
         <h2 className="card-title te">
-          {score === -1
-            ? "You have not answered the test yet. "
-            : `Your ransomware protection score has been determined. `}
+          {score !== -1
+            ? `Your ransomware protection score has been determined. `
+            : "You have not answered the test yet. "}
         </h2>
         <p>
-          Click the button to compare your results with other users <br /> and
-          receive helpful tips to improve your security.
+          {localStorage.getItem("ass")
+            ? "You scored a grade of " +
+              realScore +
+              " out of 100 points. Click the button below to see the results."
+            : "You have not answered the test yet. Click the button below to answer the test."}
         </p>
         <div className="card-actions justify-end">
-          <button className="btn btn-primary">My results</button>
+          {score !== -1 ? (
+            <button
+              className="btn btn-primary"
+              onClick={() => {
+                window.location.href = "/assessment/questions";
+              }}
+            >
+              See results
+            </button>
+          ) : (
+            <button
+              className="btn btn-primary"
+              onClick={() => {
+                window.location.href = "/assessment";
+              }}
+            >
+              Start Assignment
+            </button>
+          )}
         </div>
       </div>
     </div>

@@ -13,6 +13,13 @@ export default class DataService {
     });
   }
 
+  static getOutsideRequest(url) {
+    return fetch(`https://crossorigin.me/${url}`, {
+      method: "GET",
+      headers: this.headers2,
+    });
+  }
+
   // Post request
   static postRequest(url, data) {
     return fetch(`${getDomain()}${url}`, {
@@ -40,6 +47,12 @@ export default class DataService {
     headers.set("x-access-token", token);
     headers.set("Connection", "keep-alive");
     headers.set("Accept", "*");
+    return headers;
+  }
+
+  // Returns the http header
+  static get headers2() {
+    const headers = new Headers();
     return headers;
   }
 }

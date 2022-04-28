@@ -8,7 +8,9 @@ import DataService from "../services/DataService";
 function Questions(props) {
   const [questions, setQuestions] = useState([]);
   const [progress, setProgress] = useState(0);
-  const [answers, setAnswers] = useState([]);
+  const [answers, setAnswers] = useState();
+  const [errors, setErrors] = useState([]);
+
   let navigate = useNavigate();
 
   const incStep = 100 / questions.length;
@@ -35,17 +37,41 @@ function Questions(props) {
   }, []);
 
   useEffect(() => {
+    DataService.getRequest("/api/v1/whoami")
+      .then(async (res) => {
+        if (!res.ok) {
+          // Show error message and reset login form
+          const error = await res.json();
+        } else {
+          const user = await res.json();
+          setAnswers(user.answer.answer);
+          setErrors(user.errors);
+        }
+      })
+      .catch((err) => {
+        if (err.message.match(/Failed to fetch/)) {
+          alert("The server cannot be reached. Did you start it?");
+        } else {
+          alert(`Something went wrong during the login: ${err.message}`);
+        }
+      });
+  }, []);
+
+  useEffect(() => {
     let bar = progress / 10;
     Math.floor(bar);
     for (let i = 0; i < bar; i++) {
-      document
-        .querySelectorAll(".progress-bar")
-        [i].classList.add("step-success");
+      try {
+        document
+          .querySelectorAll(".progress-bar")
+          [i].classList.add("step-success");
+      } catch (error) {}
     }
   }, [progress]);
 
   function submit(e) {
     e.preventDefault();
+    localStorage.setItem("ass", "67");
 
     DataService.postRequest("/api/v1/assessment", {
       answers: answers,
@@ -72,7 +98,7 @@ function Questions(props) {
     <div>
       <ul className="fixed menu m-10 border bg-base-300 rounded-box top-0 right-0 h-16 w-16 items-center z-50">
         <li className="">
-          <Link to="/">
+          <Link to="/dashboard">
             <a>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -98,13 +124,14 @@ function Questions(props) {
         </ul>
         <div className="ml-96 flex-auto w-4/6 h-1/4">
           {console.log(questions)}
-          {questions.map((element, i) => (
+          {questions.map((element, index) => (
             <QuestionCard
-              key={i}
+              keyy={index}
               data={element}
               increment={increment}
               answers={answers}
               setAnswers={setAnswers}
+              errors={errors}
             />
           ))}
           <button

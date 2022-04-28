@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import DataService from "../../services/DataService";
 
 function ModuleMyTeam() {
-  let initial = new Array(0);
-  const [managedUsers, setManagedUsers] = useState(initial);
+  const [managedUsers, setManagedUsers] = useState([]);
   const [myUserId, setMyUserId] = useState("");
   const [newUser, setNewUser] = useState("");
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     DataService.getRequest("/api/v1/whoami/")
@@ -19,8 +19,8 @@ function ModuleMyTeam() {
           // @ts-ignore
           const user = await res.json().then((user) => {
             console.log("user", user);
-            setManagedUsers(user.manages || []);
             setMyUserId(user._id);
+            setManagedUsers(user.manages);
           });
         }
       })
@@ -33,10 +33,26 @@ function ModuleMyTeam() {
       });
   }, []);
 
+  function getDataForUser(userId) {
+    DataService.getRequest(`/api/v1/users/${userId}`).then(async (res) => {
+      if (!(res.status === 200)) {
+        // Show error and reset form
+        // @ts-ignore
+        const error = await res.json();
+      } else {
+        // Browse to login views
+        // @ts-ignore
+        const user = await res.json().then((user) => {
+          console.log("user", user);
+          setNewUser(user);
+        });
+      }
+    });
+  }
+
   function addNewUser(userId) {
-    console.log("called!");
-    DataService.postRequest("/api/v1/users/" + myUserId, {
-      manages: userId,
+    DataService.postRequest(`/api/v1/users/${myUserId}`, {
+      manages: [userId],
     }).then(async (res) => {
       if (!(res.status === 200)) {
         // Show error and reset form
@@ -47,11 +63,35 @@ function ModuleMyTeam() {
         // @ts-ignore
         const user = await res.json().then((user) => {
           console.log("user", user);
-          setManagedUsers(user.manages);
+          setManagedUsers([...managedUsers, user.manages]);
         });
       }
     });
   }
+
+  // setCount(count + 1);
+
+  // if (count === 1) {
+  //   setManagedUsers([
+  //     ...managedUsers,
+  //     {
+  //       key: 1,
+  //       username: "Max Mustermann",
+  //       score: 92,
+  //       status: "Anatomy",
+  //     },
+  //   ]);
+  // } else if (count === 2) {
+  //   setManagedUsers([
+  //     ...managedUsers,
+  //     {
+  //       key: 2,
+  //       username: "Kevin",
+  //       score: 55,
+  //       status: "None",
+  //     },
+  //   ]);
+  // }
 
   return (
     <>
@@ -92,7 +132,7 @@ function ModuleMyTeam() {
         </label>
       </label>
 
-      <div className="card transition ease-in-out duration-1000 hover:scale-105 lg:card-side bg-base-200 shadow-xl max-w-2xl max-h-96 m-12 p-5 flex flex-wrap flex-row">
+      <div className="card transition ease-in-out duration-1000 hover:scale-105 lg:card-side bg-base-200 shadow-xl max-w-3xl m-12 p-5 flex flex-wrap flex-row">
         <div className="text-4xl font-black m-4 p-4 min-w-full">My Team</div>
 
         <div className="overflow-x-auto w-full">
@@ -122,17 +162,8 @@ function ModuleMyTeam() {
                     className="rounded-xl"
                   >
                     <div className=" flex container flex-row flex-1 flex-wrap justify-center">
-                      <div className="rounded-lg break-after-auto text-center min-w-full">
+                      <div className="rounded-lg break-after-auto text-center min-w-full mt-5 mb-5">
                         <p>You have no managed users</p>
-                      </div>
-                      <div className="">
-                        <label
-                          // @ts-ignore
-                          for="my-modal-4"
-                          className="btn btn-primary modal-button m-5 "
-                        >
-                          <a>Add a user</a>
-                        </label>
                       </div>
                     </div>
                   </td>
@@ -153,13 +184,12 @@ function ModuleMyTeam() {
                         </div>
                       </div>
                       <div>
-                        <div className="font-bold">{user.name}</div>
-                        <div className="text-sm opacity-50">United States</div>
+                        <div className="font-bold">{user.username}</div>
                       </div>
                     </div>
                   </td>
-                  <td>{user.totalPenaltyPoints}</td>
-                  {<td>{user.eLearningsStatus}</td>}
+                  <td>{user.score}</td>
+                  {<td>{user.status}</td>}
                   <th>
                     <button className="btn btn-ghost btn-xs">details</button>
                   </th>
@@ -169,6 +199,15 @@ function ModuleMyTeam() {
             {
               //<!-- foot -->
             }
+            <div className="m-10">
+              <label
+                // @ts-ignore
+                for="my-modal-4"
+                className="btn btn-primary modal-button "
+              >
+                <a>Add a user</a>
+              </label>
+            </div>
           </table>
         </div>
       </div>

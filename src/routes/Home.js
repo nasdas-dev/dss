@@ -14,7 +14,7 @@ function Home() {
       new Date().getMinutes() * 60 +
       new Date().getSeconds();
 
-    let damagesCaused = (secondsElapsedSinceBeginningOfDay * 634.2) / 1000; //1000 because displayed as thousands
+    let damagesCaused = secondsElapsedSinceBeginningOfDay * 634.2; //1000 because displayed as thousands
     return damagesCaused;
   };
 
@@ -36,7 +36,7 @@ function Home() {
     const attacksOccuredtimer = setTimeout(() => {
       setAttacks(attacksOccured());
       setDamages(damagesCaused());
-    }, 4000);
+    }, 5000);
     return () => clearTimeout(attacksOccuredtimer);
   });
   return (
@@ -72,9 +72,9 @@ function Home() {
         <div className="flex-container flex-col hero-content">
           <CardSecondary
             span={attacks}
-            h1_2={"have occured since the beginning of this month."}
+            h1_2={"took place since the beginning of this month."}
             h1_underline={"attacks"}
-            h1={``}
+            h1={`ransomware `}
             p={
               "When it comes to cybersecurity, ransomware is one of the fastest-growing threats in recent history. Experts from Cybersecurity Ventures estimate that one attack takes place every 11 seconds in 2022."
             }
@@ -85,7 +85,7 @@ function Home() {
             h1_2={"were caused by ransomware today."}
             spancolor={"text-secondary"}
             h1_underline={" damages "}
-            h1={"thousand dollars worth of"}
+            h1={"dollars worth of"}
             p={`Cybersecurity Ventures predicts that annual ransomware damages will skyrocket to $20 billion USD by 2022. Every year, ransomware generates an estimated $1 billion in revenue for cybercriminals.`}
             buttonText={"Learn more"}
           />
