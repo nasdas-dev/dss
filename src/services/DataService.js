@@ -14,7 +14,7 @@ export default class DataService {
   }
 
   static getOutsideRequest(url) {
-    return fetch(`http:/https://crossorigin.me/${url}`, {
+    return fetch(`https://crossorigin.me/${url}`, {
       method: "GET",
       headers: this.headers2,
     });

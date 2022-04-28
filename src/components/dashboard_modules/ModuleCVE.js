@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 import DataService from "../../services/DataService";
 
 function ModuleCVE() {
-  const [software, setSoftware] = useState(["Acrobat", "Photoshop"]);
+  const [software, setSoftware] = useState([]);
   const [current, setCurrent] = useState("");
   const [fail, setFail] = useState(false);
 
-  function fetchUserTechStack() {
+  useEffect(() => {
     const userId = localStorage.getItem("uid");
     // Gets the user data
-    DataService.getRequest(`/users/${userId}`)
+    DataService.getRequest(`/api/v1/whoami/`)
       .then(async (res) => {
         if (!res.ok) {
           throw new Error(res.statusText);
@@ -26,7 +26,7 @@ function ModuleCVE() {
           alert(`Something went wrong during the login: ${err.message}`);
         }
       });
-  }
+  }, []);
 
   function getInfoForSoftware(software) {
     DataService.getOutsideRequest(
@@ -129,13 +129,15 @@ function ModuleCVE() {
                   </>
                 ))}
               </div>
-              <div className="card-actions justify-end">
-                <Link to="/cves" className="">
-                  <button className="btn btn-primary p-4 mt-4">
-                    Full list
-                  </button>
-                </Link>
-              </div>
+              {
+                //<div className="card-actions justify-end">
+                //<Link to={"/cves"} state={{ state: software }} className="">
+                //<button className="btn btn-primary p-4 mt-4">
+                //Full list
+                //</button>
+                //</Link>
+                //</div>
+              }
             </>
           ) : (
             <div className="stats stats-vertical shadow border-slate-700 border-b-4">
