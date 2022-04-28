@@ -5,6 +5,12 @@ export const Nav = ({ isLoggedIn }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const id = localStorage.getItem("uid");
 
+  function deleteLocal() {
+    localStorage.removeItem("uid");
+    localStorage.removeItem("token");
+    localStorage.removeItem("ass");
+  }
+
   return (
     <div className="navbar navbar-start	z-50 bg-neutral drop-shadow-xl min-h-16 w-full">
       <div className="flex-1 m-2">
@@ -54,13 +60,6 @@ export const Nav = ({ isLoggedIn }) => {
               </Link>
             </li>
 
-            <li>
-              <Link to="/stats" className="">
-                <button className="btn btn-ghost rounded-full m-2">
-                  User Statistics
-                </button>
-              </Link>
-            </li>
             <li>
               <Link to="/cves" className="">
                 <a href="/cves" className="btn btn-ghost rounded-full m-2">
@@ -112,7 +111,12 @@ export const Nav = ({ isLoggedIn }) => {
           <div className="dropdown dropdown-end z-50">
             <label tabindex="0" className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
-                <img src="https://api.lorem.space/image/face?hash=33791" />
+                <img
+                  // @ts-ignore
+                  src={require("../assets/profil.png")}
+                  alt="building blocks"
+                  className="avatar"
+                />
               </div>
             </label>
             <ul
@@ -128,7 +132,9 @@ export const Nav = ({ isLoggedIn }) => {
                 <a>Settings</a>
               </li>
               <li>
-                <a href={"/"}>Logout</a>
+                <a href={"/"} onClick={deleteLocal}>
+                  Logout
+                </a>
               </li>
             </ul>
           </div>

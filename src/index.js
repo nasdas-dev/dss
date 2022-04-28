@@ -10,6 +10,7 @@ import Dashboard from "./routes/Dashboard";
 import TableView from "./routes/TableView";
 import Login from "./routes/Login";
 import User from "./routes/User";
+import Anatomy from "./components/elearning_modules/Anatomy";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -23,6 +24,7 @@ ReactDOM.render(
         <Route path="cves" element={<TableView />} />
         <Route path="users" element={<TableView />} />
         <Route path="learnings" element={<TableView />} />
+        <Route path="learnings/anatomy" element={<Anatomy />} />
         <Route path="login" element={<Login />} />
         <Route path="users/:id" element={<User />} />
       </Routes>
